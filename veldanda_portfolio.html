@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gautam veldanda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        rounded: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FFFFFF;
+            color: #000000;
+            font-family: 'Outfit', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow: hidden;
+        }
+
+        /* Sleek blinking cursor */
+        .cursor {
+            display: inline-block;
+            width: 0.15em;
+            height: 0.85em;
+            background-color: #000000;
+            margin-left: 0.1em;
+            vertical-align: baseline;
+            animation: blink 0.75s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="h-full w-full flex items-center justify-center m-0 p-6 selection:bg-black selection:text-white">
+
+    <main class="text-center select-none max-w-5xl mx-auto flex flex-col items-center justify-center">
+        <!-- Main Big Hero Title -->
+        <h1 class="font-rounded font-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-none text-black">
+            <span id="typed-text"></span><span id="cursor" class="cursor"></span>
+        </h1>
+
+        <!-- Subtext Divider Line -->
+        <div id="subtext" class="opacity-0 transition-opacity duration-1000 ease-out mt-6 sm:mt-8 md:mt-10">
+            <p class="font-rounded font-extrabold text-xs sm:text-base md:text-lg lg:text-xl tracking-wider text-black flex flex-wrap justify-center items-center gap-2 sm:gap-3">
+                <span>engineer</span>
+                <span class="text-black/40">•</span>
+                <span>record producer</span>
+                <span class="text-black/40">•</span>
+                <span>investor</span>
+                <span class="text-black/40">•</span>
+                <span>researcher</span>
+            </p>
+        </div>
+    </main>
+
+    <script>
+        const textToType = "gautam veldanda";
+        const typedTextElement = document.getElementById('typed-text');
+        const cursorElement = document.getElementById('cursor');
+        const subtextElement = document.getElementById('subtext');
+
+        let charIndex = 0;
+        const typingSpeed = 80; // milliseconds per character
+
+        function type() {
+            if (charIndex < textToType.length) {
+                typedTextElement.textContent += textToType.charAt(charIndex);
+                charIndex++;
+                setTimeout(type, typingSpeed);
+            } else {
+                // Typing finished: fade out cursor and fade in subtext
+                setTimeout(() => {
+                    cursorElement.style.animation = 'none';
+                    cursorElement.style.opacity = '0';
+                    cursorElement.style.transition = 'opacity 0.5s ease';
+
+                    // Smoothly fade in subtext
+                    subtextElement.classList.remove('opacity-0');
+                    subtextElement.classList.add('opacity-100');
+                }, 400);
+            }
+        }
+
+        // Start typing sequence on load
+        window.addEventListener('load', () => {
+            setTimeout(type, 300);
+        });
+    </script>
+</body>
+</html>
