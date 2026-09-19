@@ -32,7 +32,7 @@ nav a:hover,nav a:focus-visible{color:var(--red)}
 nav .c{display:inline-block;white-space:pre;text-align:center}
 section{padding:18vh 0 4vh}
 .w{max-width:960px;margin:auto;padding:0 7vw}
-h2{font-weight:800;font-size:clamp(3.2rem,12vw,9.5rem);letter-spacing:-.05em;line-height:.95;padding-bottom:.18em;position:relative}
+h2{font-weight:800;font-size:clamp(3.2rem,12vw,9.5rem);letter-spacing:-.05em;line-height:.95;padding-bottom:.36em;position:relative}
 h2::after{content:'';position:absolute;left:0;bottom:0;width:min(100%,520px);height:12px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='12'%3E%3Cpath d='M0 6Q15-2 30 6T60 6' fill='none' stroke='%23e8371c' stroke-width='2.4'/%3E%3C/svg%3E") repeat-x;animation:sl 2.4s linear infinite}
 @keyframes sl{to{background-position:60px 0}}
 .lead{font-weight:300;font-size:clamp(1.25rem,2.6vw,1.9rem);line-height:1.35;max-width:34ch;margin:1.6rem 0 0}
@@ -61,7 +61,7 @@ h2::after{content:'';position:absolute;left:0;bottom:0;width:min(100%,520px);hei
 .spark circle{fill:var(--red);opacity:0;transition:opacity .4s 2.5s}
 .spark.in path{stroke-dashoffset:0}
 .spark.in circle{opacity:1}
-#arm{display:block;width:100%;height:clamp(260px,42vw,380px);margin-top:1.5rem}
+#arm{cursor:crosshair;display:block;width:100%;height:clamp(260px,42vw,380px);margin-top:1.5rem}
 footer{padding:22vh 7vw 6vh;text-align:center}
 footer a.m{font-weight:800;font-size:clamp(1.5rem,5vw,3.4rem);letter-spacing:-.03em;text-decoration:none;transition:color .25s}
 footer a.m:hover{color:var(--red)}
@@ -202,29 +202,57 @@ for(let i=0;i<72;i++){const b=document.createElement('i');
 const sp=$('.spark')[0];
 new IntersectionObserver((e,o)=>{if(e[0].isIntersecting){sp.classList.add('in');o.disconnect()}},{threshold:.5}).observe(sp);
 
-// robot arm (two-link inverse kinematics) follows the cursor
-const ac=$('#arm')[0],ax=ac.getContext('2d');
-let aw,ah,armOn=false,px=null,py=null,ex=null,ey=0;
+// robot arm: 3-link arm with pistons, gears and a gripper. follows the cursor, click to grip
+const ac=$('#arm')[0],ax=ac.getContext('2d'),INK='#000',RED='#e8371c';
+let aw,ah,armOn=false,px=null,py=null,ex=null,ey=0,grip=1,down=false;
 function ars(){const d=Math.min(devicePixelRatio||1,2),r=ac.getBoundingClientRect();aw=r.width;ah=r.height;ac.width=aw*d;ac.height=ah*d;ax.setTransform(d,0,0,d,0,0)}
 ars();addEventListener('resize',ars);
 new IntersectionObserver(e=>armOn=e[0].isIntersecting).observe(ac);
 addEventListener('pointermove',e=>{px=e.clientX;py=e.clientY});
+ac.addEventListener('pointerdown',()=>down=true);
+addEventListener('pointerup',()=>down=false);
+function bar(x,y,a,len,w){ax.save();ax.translate(x,y);ax.rotate(a);ax.beginPath();ax.roundRect(-w/2,-w/2,len+w,w,w/2);ax.fill();ax.stroke();ax.restore()}
+function gear(x,y,R,n,rot){ax.beginPath();for(let i=0;i<n*2;i++){const r=i%2?R*.8:R,a=rot+i*Math.PI/n;ax.lineTo(x+r*Math.cos(a),y+r*Math.sin(a))}
+  ax.closePath();ax.fillStyle='#fff';ax.fill();ax.stroke();ax.fillStyle=INK;ax.beginPath();ax.arc(x,y,3,0,7);ax.fill()}
+function piston(x1,y1,x2,y2){const dx=x2-x1,dy=y2-y1,d=Math.hypot(dx,dy),a=Math.atan2(dy,dx),m=d*.55;
+  ax.fillStyle='#fff';bar(x1,y1,a,m-8,9);
+  ax.beginPath();ax.lineWidth=3;ax.moveTo(x1+m*Math.cos(a),y1+m*Math.sin(a));ax.lineTo(x2,y2);ax.stroke();
+  [[x1,y1],[x2,y2]].forEach(p=>{ax.beginPath();ax.arc(p[0],p[1],4,0,7);ax.fill();ax.stroke()})}
 function arm(t){
   if(armOn){
     t*=.001;
-    const r=ac.getBoundingClientRect(),bx=aw*.5,by=ah-16,L1=Math.min(aw*.3,190),L2=L1*.9;
-    const gx=px===null?bx+Math.sin(t*.8)*L1:px-r.left,gy=py===null?by-L1*1.1+Math.cos(t*1.1)*L1*.4:py-r.top;
-    if(ex===null){ex=bx;ey=by-L1}
-    ex+=(gx-ex)*.09;ey+=(gy-ey)*.09;
-    const dx=ex-bx,dy=Math.min(ey-by,-10),d=Math.hypot(dx,dy),dd=Math.min(Math.max(d,Math.abs(L1-L2)+1),L1+L2-1);
-    const an=Math.atan2(dy,dx),a=Math.acos((dd*dd+L1*L1-L2*L2)/(2*dd*L1)),t1=an-a;
-    const jx=bx+L1*Math.cos(t1),jy=by+L1*Math.sin(t1),fx=bx+dd*Math.cos(an),fy=by+dd*Math.sin(an);
-    ax.clearRect(0,0,aw,ah);ax.lineCap='round';ax.strokeStyle='#000';ax.fillStyle='#000';
-    ax.fillRect(bx-42,by+8,84,4);
-    ax.lineWidth=8;ax.beginPath();ax.moveTo(bx,by);ax.lineTo(jx,jy);ax.lineTo(fx,fy);ax.stroke();
-    ax.lineWidth=3;ax.fillStyle='#fff';
-    [[bx,by],[jx,jy]].forEach(p=>{ax.beginPath();ax.arc(p[0],p[1],10,0,7);ax.fill();ax.stroke()});
-    ax.fillStyle='#e8371c';ax.beginPath();ax.arc(fx,fy,9,0,7);ax.fill()}
+    const r=ac.getBoundingClientRect(),bx=aw*.5,by=ah-18,sx=bx,sy=by-36,L1=Math.min(aw*.27,175),L2=L1*.85,L3=L1*.32;
+    const inside=px!==null&&px>=r.left&&px<=r.right&&py>=r.top&&py<=r.bottom;
+    const gx=px===null?sx+Math.sin(t*.8)*L1*1.2:px-r.left,gy=py===null?sy-L1*1.2+Math.cos(t*1.1)*L1*.4:py-r.top;
+    if(ex===null){ex=sx;ey=sy-L1}
+    ex+=(gx-ex)*.09;ey+=(gy-ey)*.09;grip+=((down?0:1)-grip)*.2;
+    const dx=ex-sx,dy=Math.min(ey-sy,-10),an=Math.atan2(dy,dx),wd=Math.min(Math.max(Math.hypot(dx,dy)-L3,Math.abs(L1-L2)+1),L1+L2-1);
+    const t1=an-Math.acos((wd*wd+L1*L1-L2*L2)/(2*wd*L1));
+    const jx=sx+L1*Math.cos(t1),jy=sy+L1*Math.sin(t1),wx=sx+wd*Math.cos(an),wy=sy+wd*Math.sin(an),t2=Math.atan2(wy-jy,wx-jx);
+    const hx=wx+L3*Math.cos(an),hy=wy+L3*Math.sin(an);
+    const u1=[Math.cos(t1),Math.sin(t1)],n1=[Math.sin(t1),-Math.cos(t1)],u2=[Math.cos(t2),Math.sin(t2)],n2=[Math.sin(t2),-Math.cos(t2)];
+    ax.clearRect(0,0,aw,ah);ax.lineCap='round';ax.lineJoin='round';ax.lineWidth=3;ax.strokeStyle=INK;
+    // ground, pedestal, turret
+    ax.fillStyle='rgba(0,0,0,.18)';ax.fillRect(0,by+10,aw,1);
+    ax.fillStyle=INK;ax.fillRect(bx-64,by+2,128,8);
+    ax.fillStyle='#fff';ax.beginPath();ax.roundRect(bx-36,sy,72,by+2-sy,6);ax.fill();ax.stroke();
+    // hydraulic pistons
+    piston(bx-26,by-10,sx+u1[0]*L1*.42+n1[0]*17,sy+u1[1]*L1*.42+n1[1]*17);
+    piston(sx+u1[0]*L1*.72+n1[0]*15,sy+u1[1]*L1*.72+n1[1]*15,jx+u2[0]*L2*.3+n2[0]*13,jy+u2[1]*L2*.3+n2[1]*13);
+    // links
+    ax.fillStyle='#fff';ax.lineWidth=3;bar(sx,sy,t1,L1,22);bar(jx,jy,t2,L2,16);bar(wx,wy,an,L3,10);
+    // joints
+    gear(sx,sy,17,9,t1*2);gear(jx,jy,13,8,-t2*2+1);
+    ax.fillStyle='#fff';ax.beginPath();ax.arc(wx,wy,7,0,7);ax.fill();ax.stroke();
+    // gripper
+    const o=.12+grip*.5;ax.lineWidth=5;
+    [-1,1].forEach(s=>{const a1=an+s*o,a2=an+s*o*.25,x1=hx+16*Math.cos(a1),y1=hy+16*Math.sin(a1),x2=x1+13*Math.cos(a2),y2=y1+13*Math.sin(a2);
+      ax.strokeStyle=INK;ax.beginPath();ax.moveTo(hx,hy);ax.lineTo(x1,y1);ax.lineTo(x2,y2);ax.stroke();
+      ax.fillStyle=RED;ax.beginPath();ax.arc(x2,y2,3.5,0,7);ax.fill()});
+    // reticle
+    if(inside){ax.strokeStyle=RED;ax.lineWidth=1.5;const q=down?6:11;ax.beginPath();ax.arc(gx,gy,q,0,7);
+      ax.moveTo(gx-q-6,gy);ax.lineTo(gx-q+3,gy);ax.moveTo(gx+q-3,gy);ax.lineTo(gx+q+6,gy);
+      ax.moveTo(gx,gy-q-6);ax.lineTo(gx,gy-q+3);ax.moveTo(gx,gy+q-3);ax.lineTo(gx,gy+q+6);ax.stroke()}}
   requestAnimationFrame(arm)}
 requestAnimationFrame(arm);
 </script>
