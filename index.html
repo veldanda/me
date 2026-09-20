@@ -40,23 +40,13 @@ h2::after{content:'';position:absolute;left:0;bottom:0;width:min(100%,520px);hei
 .lead{font-weight:300;font-size:clamp(1.25rem,2.6vw,1.9rem);line-height:1.35;max-width:34ch;margin:1.6rem 0 0}
 .stats b{display:block;font-weight:800;font-size:clamp(2.8rem,8vw,5.6rem);letter-spacing:-.05em;line-height:1}
 .stats span{color:var(--soft);font-size:.98rem}
-.cloud{display:flex;flex-wrap:wrap;gap:.2rem 2.2rem;align-items:baseline;margin-top:2.8rem}
-.ph{font-size:clamp(1.7rem,5.4vw,3.8rem);font-weight:300;letter-spacing:-.035em;line-height:1.2;cursor:default;transition:color .25s}
-.ph{white-space:nowrap}
-.ph .c{display:inline-block;white-space:pre;text-align:center}
-.ph.b{font-weight:800}
-.ph:nth-child(3n){margin-left:5vw}
-.ph:hover{color:var(--red)}
-.ph.wm{display:block;width:fit-content;font-weight:800;font-size:clamp(2.4rem,8.4vw,6.4rem);letter-spacing:-.045em;line-height:1;margin-top:2.6rem}
 .note{font-weight:300;font-size:clamp(1.05rem,2vw,1.35rem);line-height:1.45;color:var(--soft);max-width:46ch;margin-top:1.6rem}
-.note.before{margin-top:5rem}
-.cloud.s{margin-top:1.4rem}
-.cloud.s .ph{font-size:clamp(1.15rem,2.6vw,1.7rem);margin-left:0}
 .stats{display:flex;flex-wrap:wrap;gap:1.4rem 5rem;margin:2.8rem 0 3.4rem}
 .stats>div:nth-child(2){margin-top:2.2rem}
 .stats>div:nth-child(3){margin-top:4.4rem}
-#lever{display:block;width:100%;height:clamp(300px,46vw,440px);margin-top:1.5rem;touch-action:pan-y}
-#lever{cursor:crosshair}
+#lever,#net{display:block;width:100%;height:clamp(300px,46vw,440px);margin-top:1.5rem;touch-action:pan-y}
+#lever,#net{cursor:crosshair}
+.big{font-weight:800;font-size:clamp(2rem,5vw,3.4rem);letter-spacing:-.035em;line-height:1.08;max-width:22ch;margin-top:2.4rem}
 .wf{display:flex;align-items:center;justify-content:space-between;height:120px}
 .wf i{flex:1;max-width:5px;height:calc(var(--h)*1%);background:var(--ink);border-radius:3px;animation:eq var(--d) ease-in-out infinite alternate;animation-delay:var(--dl)}
 @keyframes eq{to{transform:scaleY(.28)}}
@@ -69,7 +59,9 @@ footer a.m:hover{color:var(--red)}
 .links a{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;transition:color .25s,transform .25s}
 .links svg{width:28px;height:28px;overflow:visible;fill:currentColor}
 .links a:hover{color:var(--red);transform:translateY(-3px)}
-@media(max-width:640px){</style>
+@media(max-width:640px){.stats>div{margin-top:0!important}h1{white-space:normal}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
 </head>
 <body>
 <canvas id="w" aria-hidden="true"></canvas>
@@ -88,17 +80,14 @@ footer a.m:hover{color:var(--red)}
 
 <section id="engineer"><div class="w">
   <h2>engineer</h2>
-  <span class="ph wm" data-set="{}[]&lt;&gt;/;=+*#">mckinsey &amp; company</span>
-  <p class="note">senior associate. ai &times; enterprise, across</p>
-  <div class="cloud"><span class="ph b" data-set="{}[]&lt;&gt;/;=+*#">aviation</span><span class="ph" data-set="{}[]&lt;&gt;/;=+*#">financial services</span><span class="ph" data-set="{}[]&lt;&gt;/;=+*#">telecom</span><span class="ph b" data-set="{}[]&lt;&gt;/;=+*#">healthcare</span></div>
-  <p class="note">featured work: a formula e world record propelled by ai, and mckinsey &times; nvidia on generative ai.</p>
-  <p class="note before">before that: early-stage startups that grew into unicorns and decacorns, oyo among them.</p>
-  <div class="cloud s"><span class="ph" data-set="{}[]&lt;&gt;/;=+*#">distributed systems</span><span class="ph" data-set="{}[]&lt;&gt;/;=+*#">real-time infrastructure</span><span class="ph" data-set="{}[]&lt;&gt;/;=+*#">fault-tolerant services</span><span class="ph" data-set="{}[]&lt;&gt;/;=+*#">high concurrency</span><span class="ph" data-set="{}[]&lt;&gt;/;=+*#">video at scale</span><span class="ph" data-set="{}[]&lt;&gt;/;=+*#">generative ai</span></div>
+  <p class="big">at mckinsey, i took ai into the world's biggest enterprises.</p>
+  <p class="note">before that, i built at early-stage startups that grew into unicorns and decacorns. oyo among them.</p>
+  <canvas id="net" aria-hidden="true"></canvas>
 </div></section>
 
 <section id="producer"><div class="w">
   <h2>record producer</h2>
-  <p class="lead">independent music, made under skylen.</p>
+  <p class="lead">independent music. skylen records.</p>
   <div class="stats">
     <div><b data-to="250" data-suf="k">0</b><span>monthly listeners on spotify</span></div>
     <div><b data-to="10" data-suf="m+">0</b><span>streams across all platforms</span></div>
@@ -111,7 +100,6 @@ footer a.m:hover{color:var(--red)}
   <h2>investor</h2>
   <p class="lead">early-stage bets on people building hard things.</p>
   <canvas id="lever" aria-hidden="true"></canvas>
-  <p class="note">slide to find the balance point.</p>
 </div></section>
 
 <section id="researcher"><div class="w">
@@ -124,7 +112,7 @@ footer a.m:hover{color:var(--red)}
 <footer>
   <img class="avatar" src="favicon.png" alt="gautam veldanda" onerror="this.remove()">
   <a class="m" href="mailto:gautam@veldanda.me">gautam@veldanda.me</a>
-  <div class="links"><a href="#" rel="noopener" aria-label="linkedin" data-site="linkedin"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a><a href="#" rel="noopener" aria-label="github" data-site="github"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a><a href="#" rel="noopener" aria-label="orcid" data-site="orcid"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg></a><a href="#" rel="noopener" aria-label="x" data-site="x"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a><a href="#" rel="noopener" aria-label="spotify" data-site="spotify"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg></a></div>
+  <div class="links"><a href="https://www.linkedin.com/in/veldandax" target="_blank" rel="noopener noreferrer" aria-label="linkedin" data-site="linkedin"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a><a href="https://github.com/veldanda" target="_blank" rel="noopener noreferrer" aria-label="github" data-site="github"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a><a href="https://orcid.org/0009-0001-1853-3310" target="_blank" rel="noopener noreferrer" aria-label="orcid" data-site="orcid"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg></a><a href="https://x.com/veldandax" target="_blank" rel="noopener noreferrer" aria-label="x" data-site="x"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a><a href="https://open.spotify.com/artist/2HtvRsfLzl8I2kdKuhenDE" target="_blank" rel="noopener noreferrer" aria-label="spotify" data-site="spotify"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg></a></div>
 </footer>
 
 <script>
@@ -135,7 +123,7 @@ const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 function split(el){const t=el.textContent;el.dataset.t=t;el.setAttribute('aria-label',t);
   el.innerHTML=[...t].map((ch,i)=>`<span class="c" aria-hidden="true" style="--i:${i}">${ch}</span>`).join('')}
 split($('#name')[0]);
-$('nav a,.ph').forEach(a=>{split(a);
+$('nav a').forEach(a=>{split(a);
   if(a.dataset.set){a.addEventListener('mouseenter',()=>scramble(a));a.addEventListener('focus',()=>{if(a.matches(':focus-visible'))scramble(a)})}});
 
 function scramble(a){
@@ -291,6 +279,41 @@ mk('#lever',(g,w,h,t,dt,r)=>{
   bl(.06*Lb,.075*Lb,RED,'1×');bl(.9*Lb,.16*Lb,INK,'5×');
   g.fillStyle=INK;g.beginPath();g.arc(ls*Lb,0,6,0,7);g.fill();g.fillStyle='#fff';g.beginPath();g.arc(ls*Lb,0,2,0,7);g.fill();g.restore();
   if(bal>.02){g.globalAlpha=bal;g.fillStyle=RED;g.font='500 15px Outfit,sans-serif';g.textAlign='center';g.fillText('balanced',w/2,26);g.globalAlpha=1}});
+
+// engineer: a self-healing network. the cursor knocks nodes out and traffic routes around them
+const layers=[[.5],[.2,.5,.8],[.12,.37,.63,.88],[.12,.37,.63,.88],[.2,.5,.8],[.5]],lx=[.05,.24,.42,.6,.78,.95],nodes=[];
+layers.forEach((ys,li)=>ys.forEach(y=>nodes.push({nx:lx[li],ny:y,li,out:[],f:0,ft:0,pulse:0})));
+nodes.forEach(a=>nodes.forEach((b,j)=>{if(b.li===a.li+1&&Math.abs(b.ny-a.ny)<=.34)a.out.push(j)}));
+let pk=[],spawn=0,idle=1.5;
+mk('#net',(g,w,h,t,dt,r)=>{
+  const m=36,p=ptr(r),hov=p&&p.in;
+  const P=nodes.map(n=>({x:m+n.nx*(w-2*m),y:m+n.ny*(h-2*m)}));
+  if(!hov){idle-=dt;if(idle<=0){idle=2.4;const mid=nodes.map((n,i)=>i).filter(i=>nodes[i].li>0&&nodes[i].li<5);nodes[mid[Math.random()*mid.length|0]].ft=2}}
+  nodes.forEach((n,i)=>{if(n.li>0&&n.li<5){if(hov&&Math.hypot(P[i].x-p.x,P[i].y-p.y)<36)n.ft=.5;else n.ft=Math.max(0,n.ft-dt)}});
+  const alive=nodes.map(n=>n.ft<=0),reach=[];
+  for(let i=nodes.length-1;i>=0;i--)reach[i]=alive[i]&&(nodes[i].li===5||nodes[i].out.some(j=>reach[j]));
+  nodes.forEach((n,i)=>n.f+=((alive[i]?0:1)-n.f)*Math.min(1,dt*10));
+  // traffic
+  if((spawn-=dt)<=0&&reach[0]&&pk.length<40){spawn=.38;const c=nodes[0].out.filter(j=>reach[j]);pk.push({u:0,v:c[Math.random()*c.length|0],t:0})}
+  for(const k of pk){const a=P[k.u],b=P[k.v];k.t+=240*dt/Math.hypot(b.x-a.x,b.y-a.y);
+    if(!alive[k.v]){k.dead=true;continue}
+    if(k.t>=1){const V=nodes[k.v];V.pulse=1;if(V.li===5){k.dead=true;continue}
+      const c=V.out.filter(j=>reach[j]);if(!c.length){k.dead=true;continue}k.u=k.v;k.v=c[Math.random()*c.length|0];k.t=0}}
+  pk=pk.filter(k=>!k.dead);
+  // draw
+  g.lineCap='round';g.lineJoin='round';
+  nodes.forEach((a,i)=>a.out.forEach(j=>{const f=Math.max(a.f,nodes[j].f);g.strokeStyle=`rgba(0,0,0,${.24*(1-.75*f)})`;g.lineWidth=1.5;
+    g.beginPath();g.moveTo(P[i].x,P[i].y);g.lineTo(P[j].x,P[j].y);g.stroke()}));
+  for(const k of pk){const a=P[k.u],b=P[k.v],x=a.x+(b.x-a.x)*k.t,y=a.y+(b.y-a.y)*k.t,d=Math.hypot(b.x-a.x,b.y-a.y),tl=Math.min(18,k.t*d);
+    g.strokeStyle=RED;g.globalAlpha=.45;g.lineWidth=3;g.beginPath();g.moveTo(x-(b.x-a.x)/d*tl,y-(b.y-a.y)/d*tl);g.lineTo(x,y);g.stroke();
+    g.globalAlpha=1;g.fillStyle=RED;g.beginPath();g.arc(x,y,4.5,0,7);g.fill()}
+  nodes.forEach((n,i)=>{const{x,y}=P[i],src=n.li===0,snk=n.li===5,rad=src||snk?11:9;
+    if(n.pulse>0){g.globalAlpha=n.pulse*.6;g.strokeStyle=RED;g.lineWidth=1.5;g.beginPath();g.arc(x,y,rad+(1-n.pulse)*16,0,7);g.stroke();n.pulse-=dt*2.2}
+    g.globalAlpha=1-.6*n.f;g.lineWidth=3;g.strokeStyle=snk?RED:INK;g.fillStyle=src?INK:'#fff';
+    g.setLineDash(n.f>.5?[3,3]:[]);g.beginPath();g.arc(x,y,rad,0,7);g.fill();g.stroke();g.setLineDash([]);
+    if(n.f>.5){g.globalAlpha=n.f;g.strokeStyle=RED;g.lineWidth=2;g.beginPath();g.moveTo(x-4,y-4);g.lineTo(x+4,y+4);g.moveTo(x+4,y-4);g.lineTo(x-4,y+4);g.stroke()}
+    g.globalAlpha=1});
+  if(hov){g.save();g.setLineDash([4,5]);g.strokeStyle=RED;g.globalAlpha=.5;g.lineWidth=1.5;g.beginPath();g.arc(p.x,p.y,36,0,7);g.stroke();g.restore()}});
 
 // in-page navigation via JS (plain #hash links don't scroll inside sandboxed previews)
 $('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
