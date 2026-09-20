@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>gautam veldanda</title>
+<meta name="description" content="gautam veldanda: engineer, record producer, investor, researcher.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;800&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#fff;--ink:#000;--red:#e8371c;--soft:rgba(0,0,0,.58)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'Outfit','Hiragino Sans','Yu Gothic',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--red);outline-offset:4px}
+#w{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+main,footer{position:relative;z-index:2}
+#egg{position:fixed;z-index:5;pointer-events:none;font:500 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.14em;opacity:0;transition:opacity 1.2s}
+#egg.on{opacity:.45}
+#egg::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--red);margin-right:9px;vertical-align:1px}
+header{min-height:100svh;display:grid;place-content:center;text-align:center;padding:0 5vw}
+h1{font-weight:800;font-size:clamp(2.8rem,10.2vw,9.5rem);letter-spacing:-.045em;line-height:1;white-space:nowrap}
+h1 .c{display:inline-block;white-space:pre;animation:rise 1.1s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*45ms + .2s)}
+@keyframes rise{from{transform:translateY(.6em);opacity:0}}
+nav{margin-top:clamp(1.4rem,4vw,3rem);display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.2rem clamp(.7rem,2vw,1.6rem);font-weight:500;font-size:clamp(1rem,2vw,1.7rem);letter-spacing:.01em}
+nav .d{color:var(--soft);font-size:.7em}
+nav a{text-decoration:none;padding:.35em .15em;transition:color .25s;display:inline-block}
+nav a:hover,nav a:focus-visible{color:var(--red)}
+/* letters never take clicks, so text swaps can't interrupt them */
+.c{pointer-events:none}
+nav .c{display:inline-block;white-space:pre;text-align:center}
+section{padding:18vh 0 4vh}
+.w{max-width:960px;margin:auto;padding:0 7vw}
+h2{font-weight:800;font-size:clamp(3.2rem,12vw,9.5rem);letter-spacing:-.05em;line-height:.95;padding-bottom:.36em;position:relative}
+h2::after{content:'';position:absolute;left:0;bottom:0;width:min(100%,520px);height:12px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='12'%3E%3Cpath d='M0 6Q15-2 30 6T60 6' fill='none' stroke='%23e8371c' stroke-width='2.4'/%3E%3C/svg%3E") repeat-x;animation:sl 2.4s linear infinite}
+@keyframes sl{to{background-position:60px 0}}
+.lead{font-weight:300;font-size:clamp(1.25rem,2.6vw,1.9rem);line-height:1.35;max-width:34ch;margin:1.6rem 0 0}
+.stats b{display:block;font-weight:800;font-size:clamp(2.8rem,8vw,5.6rem);letter-spacing:-.05em;line-height:1}
+.stats span{color:var(--soft);font-size:.98rem}
+.note{font-weight:300;font-size:clamp(1.05rem,2vw,1.35rem);line-height:1.45;color:var(--soft);max-width:46ch;margin-top:1.6rem}
+.stats{display:flex;flex-wrap:wrap;gap:1.4rem 5rem;margin:2.8rem 0 3.4rem}
+.stats>div:nth-child(2){margin-top:2.2rem}
+.stats>div:nth-child(3){margin-top:4.4rem}
+#lever,#net{display:block;width:100%;height:clamp(300px,46vw,440px);margin-top:1.5rem;touch-action:pan-y}
+#lever,#net{cursor:crosshair}
+.big{font-weight:800;font-size:clamp(2rem,5vw,3.4rem);letter-spacing:-.035em;line-height:1.08;max-width:22ch;margin-top:2.4rem}
+.wf{display:flex;align-items:center;justify-content:space-between;height:120px}
+.wf i{flex:1;max-width:5px;height:calc(var(--h)*1%);background:var(--ink);border-radius:3px;animation:eq var(--d) ease-in-out infinite alternate;animation-delay:var(--dl)}
+@keyframes eq{to{transform:scaleY(.28)}}
+#arm{cursor:crosshair;display:block;width:100%;height:clamp(260px,42vw,380px);margin-top:1.5rem}
+footer{padding:22vh 7vw 6vh;text-align:center}
+.avatar{display:block;width:104px;height:104px;border-radius:50%;object-fit:cover;margin:0 auto 1.8rem}
+footer a.m{font-weight:800;font-size:clamp(1.5rem,5vw,3.4rem);letter-spacing:-.03em;text-decoration:none;transition:color .25s}
+footer a.m:hover{color:var(--red)}
+.links{margin-top:1.8rem;display:flex;justify-content:center;flex-wrap:wrap;gap:1rem 2.4rem}
+.links a{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;transition:color .25s,transform .25s}
+.links svg{width:28px;height:28px;overflow:visible;fill:currentColor}
+.links a:hover{color:var(--red);transform:translateY(-3px)}
+@media(max-width:640px){.stats>div{margin-top:0!important}h1{white-space:normal}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<canvas id="w" aria-hidden="true"></canvas>
+<div id="egg" aria-hidden="true"></div>
+
+<main>
+<header id="top">
+  <h1 id="name">gautam veldanda</h1>
+  <nav aria-label="sections">
+    <a href="#engineer" data-set="{}[]<>/;=+*#&%">engineer</a><span class="d">&bull;</span>
+    <a href="#producer" data-set="~≈^-_=">record producer</a><span class="d">&bull;</span>
+    <a href="#investor" data-set="0123456789$%+.">investor</a><span class="d">&bull;</span>
+    <a href="#researcher" data-set="αβγδθλμπσΩ∇∂∑">researcher</a>
+  </nav>
+</header>
+
+<section id="engineer"><div class="w">
+  <h2>engineer</h2>
+  <p class="big">at mckinsey, i took ai into the world's biggest enterprises.</p>
+  <p class="note">before that, i built at early-stage startups that grew into unicorns and decacorns. oyo among them.</p>
+  <canvas id="net" aria-hidden="true"></canvas>
+</div></section>
+
+<section id="producer"><div class="w">
+  <h2>record producer</h2>
+  <p class="lead">independent music. skylen records.</p>
+  <div class="stats">
+    <div><b data-to="250" data-suf="k">0</b><span>monthly listeners on spotify</span></div>
+    <div><b data-to="10" data-suf="m+">0</b><span>streams across all platforms</span></div>
+    <div><b data-to="70" data-suf="+">0</b><span>countries charted</span></div>
+  </div>
+  <div class="wf" aria-hidden="true"></div>
+</div></section>
+
+<section id="investor"><div class="w">
+  <h2>investor</h2>
+  <p class="lead">early-stage bets on people building hard things.</p>
+  <canvas id="lever" aria-hidden="true"></canvas>
+</div></section>
+
+<section id="researcher"><div class="w">
+  <h2>researcher</h2>
+  <p class="lead">incoming phd graduate in robotics.</p>
+  <canvas id="arm" aria-hidden="true"></canvas>
+</div></section>
+</main>
+
+<footer>
+  <img class="avatar" src="favicon.png" alt="gautam veldanda" onerror="this.remove()">
+  <a class="m" href="mailto:gautam@veldanda.me">gautam@veldanda.me</a>
+  <div class="links"><a href="https://www.linkedin.com/in/veldandax" target="_blank" rel="noopener noreferrer" aria-label="linkedin" data-site="linkedin"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a><a href="https://github.com/veldanda" target="_blank" rel="noopener noreferrer" aria-label="github" data-site="github"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a><a href="https://orcid.org/0009-0001-1853-3310" target="_blank" rel="noopener noreferrer" aria-label="orcid" data-site="orcid"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg></a><a href="https://x.com/veldandax" target="_blank" rel="noopener noreferrer" aria-label="x" data-site="x"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a><a href="https://open.spotify.com/artist/2HtvRsfLzl8I2kdKuhenDE" target="_blank" rel="noopener noreferrer" aria-label="spotify" data-site="spotify"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg></a></div>
+</footer>
+
+<script>
+const $=(s,r=document)=>[...r.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+// split text into letters
+function split(el){const t=el.textContent;el.dataset.t=t;el.setAttribute('aria-label',t);
+  el.innerHTML=[...t].map((ch,i)=>`<span class="c" aria-hidden="true" style="--i:${i}">${ch}</span>`).join('')}
+split($('#name')[0]);
+$('nav a').forEach(a=>{split(a);
+  if(a.dataset.set){a.addEventListener('mouseenter',()=>scramble(a));a.addEventListener('focus',()=>{if(a.matches(':focus-visible'))scramble(a)})}});
+
+function scramble(a){
+  const cs=$('.c',a),set=a.dataset.set,o=a.dataset.t;let f=0;clearInterval(a._t);
+  cs.forEach(c=>{if(!c.style.width)c.style.width=c.getBoundingClientRect().width+'px'});
+  a._t=setInterval(()=>{f++;cs.forEach((c,i)=>{c.textContent=(o[i]===' '||f>i*2+4)?o[i]:set[Math.random()*set.length|0]});
+    if(f>cs.length*2+4)clearInterval(a._t)},32)}
+
+// waves
+const cv=$('#w')[0],g=cv.getContext('2d');
+let W,H,mx=.5,my=.5,tx=.5,ty=.5,sy=0;
+function rs(){const d=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*d;cv.height=H*d;g.setTransform(d,0,0,d,0,0)}
+addEventListener('resize',rs);rs();
+addEventListener('pointermove',e=>{tx=e.clientX/W;ty=e.clientY/H});
+addEventListener('scroll',()=>sy=scrollY,{passive:true});
+const N=18;
+function draw(t){
+  t*=.001;mx+=(tx-mx)*.05;my+=(ty-my)*.05;g.clearRect(0,0,W,H);
+  const amp=24+Math.min(sy/30,46);
+  for(let i=0;i<N;i++){
+    const k=i/N,base=H*(.2+k*.75),hot=i===9;
+    g.beginPath();
+    for(let x=0;x<=W+8;x+=8){
+      const dx=(x-mx*W)/(W*.16),dy=(base-my*H)/(H*.28);
+      const y=base
+        +Math.sin(x*.0042+t*.55+i*.34+sy*.0018)*amp*(.55+k)
+        +Math.sin(x*.0115-t*.4+i*.9)*amp*.28
+        -Math.exp(-dx*dx-dy*dy)*70;
+      x?g.lineTo(x,y):g.moveTo(x,y)}
+    g.lineWidth=hot?1.8:(i%6===0?1.3:.8);
+    g.strokeStyle=hot?'rgba(232,55,28,.85)':`rgba(0,0,0,${i%6===0?.3:.14})`;
+    g.stroke()}
+  if(!reduce)requestAnimationFrame(draw)}
+requestAnimationFrame(draw);
+
+// easter eggs
+const eggs=['all systems are a go','arigato gozaimasu','operators are standing by','dna morphing','algorithms instantiating'];
+const egg=$('#egg')[0];let last=-1;
+function showEgg(){
+  let i;do{i=Math.random()*eggs.length|0}while(i===last);last=i;
+  const v=Math.random()<.5?'top':'bottom',h=Math.random()<.5?'left':'right';
+  egg.style.cssText=`${v}:${16+Math.random()*36}px;${h}:${16+Math.random()*36}px`;
+  const txt=eggs[i];let k=0;egg.textContent='';egg.classList.add('on');
+  const ty=setInterval(()=>{egg.textContent=txt.slice(0,++k);
+    if(k>=txt.length){clearInterval(ty);setTimeout(()=>egg.classList.remove('on'),2600)}},reduce?0:55);
+  setTimeout(showEgg,6500+Math.random()*5000)}
+setTimeout(showEgg,2800);
+
+// count-up stats
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);
+  const el=e.target,to=+el.dataset.to,s=el.dataset.suf;let st=null;
+  const step=ts=>{st??=ts;const p=Math.min((ts-st)/1400,1);el.textContent=Math.round(to*(1-Math.pow(1-p,3)))+(p===1?s:'');if(p<1)requestAnimationFrame(step)};
+  reduce?el.textContent=to+s:requestAnimationFrame(step)}),{threshold:.6});
+$('.stats b').forEach(b=>io.observe(b));
+
+
+
+// robot arm: 3-link arm with pistons, gears and a gripper. follows the cursor, click to grip
+const ac=$('#arm')[0],ax=ac.getContext('2d'),INK='#000',RED='#e8371c';
+let aw,ah,armOn=false,px=null,py=null,ex=null,ey=0,grip=1,down=false;
+function ars(){const d=Math.min(devicePixelRatio||1,2),r=ac.getBoundingClientRect();aw=r.width;ah=r.height;ac.width=aw*d;ac.height=ah*d;ax.setTransform(d,0,0,d,0,0)}
+ars();addEventListener('resize',ars);
+new IntersectionObserver(e=>armOn=e[0].isIntersecting).observe(ac);
+addEventListener('pointermove',e=>{px=e.clientX;py=e.clientY});
+ac.addEventListener('pointerdown',()=>down=true);
+addEventListener('pointerup',()=>down=false);
+function bar(x,y,a,len,w){ax.save();ax.translate(x,y);ax.rotate(a);ax.beginPath();ax.roundRect(-w/2,-w/2,len+w,w,w/2);ax.fill();ax.stroke();ax.restore()}
+function gear(x,y,R,n,rot){ax.beginPath();for(let i=0;i<n*2;i++){const r=i%2?R*.8:R,a=rot+i*Math.PI/n;ax.lineTo(x+r*Math.cos(a),y+r*Math.sin(a))}
+  ax.closePath();ax.fillStyle='#fff';ax.fill();ax.stroke();ax.fillStyle=INK;ax.beginPath();ax.arc(x,y,3,0,7);ax.fill()}
+function piston(x1,y1,x2,y2){const dx=x2-x1,dy=y2-y1,d=Math.hypot(dx,dy),a=Math.atan2(dy,dx),m=d*.55;
+  ax.fillStyle='#fff';bar(x1,y1,a,m-8,9);
+  ax.beginPath();ax.lineWidth=3;ax.moveTo(x1+m*Math.cos(a),y1+m*Math.sin(a));ax.lineTo(x2,y2);ax.stroke();
+  [[x1,y1],[x2,y2]].forEach(p=>{ax.beginPath();ax.arc(p[0],p[1],4,0,7);ax.fill();ax.stroke()})}
+function arm(t){
+  if(armOn){
+    t*=.001;
+    const r=ac.getBoundingClientRect(),bx=aw*.5,by=ah-18,sx=bx,sy=by-36,L1=Math.min(aw*.27,175),L2=L1*.85,L3=L1*.32;
+    const inside=px!==null&&px>=r.left&&px<=r.right&&py>=r.top&&py<=r.bottom;
+    const gx=px===null?sx+Math.sin(t*.8)*L1*1.2:px-r.left,gy=py===null?sy-L1*1.2+Math.cos(t*1.1)*L1*.4:py-r.top;
+    if(ex===null){ex=sx;ey=sy-L1}
+    ex+=(gx-ex)*.09;ey+=(gy-ey)*.09;grip+=((down?0:1)-grip)*.2;
+    const dx=ex-sx,dy=Math.min(ey-sy,-10),an=Math.atan2(dy,dx),wd=Math.min(Math.max(Math.hypot(dx,dy)-L3,Math.abs(L1-L2)+1),L1+L2-1);
+    const t1=an-Math.acos((wd*wd+L1*L1-L2*L2)/(2*wd*L1));
+    const jx=sx+L1*Math.cos(t1),jy=sy+L1*Math.sin(t1),wx=sx+wd*Math.cos(an),wy=sy+wd*Math.sin(an),t2=Math.atan2(wy-jy,wx-jx);
+    const hx=wx+L3*Math.cos(an),hy=wy+L3*Math.sin(an);
+    const u1=[Math.cos(t1),Math.sin(t1)],n1=[Math.sin(t1),-Math.cos(t1)],u2=[Math.cos(t2),Math.sin(t2)],n2=[Math.sin(t2),-Math.cos(t2)];
+    ax.clearRect(0,0,aw,ah);ax.lineCap='round';ax.lineJoin='round';ax.lineWidth=3;ax.strokeStyle=INK;
+    // ground, pedestal, turret
+    ax.fillStyle='rgba(0,0,0,.18)';ax.fillRect(0,by+10,aw,1);
+    ax.fillStyle=INK;ax.fillRect(bx-64,by+2,128,8);
+    ax.fillStyle='#fff';ax.beginPath();ax.roundRect(bx-36,sy,72,by+2-sy,6);ax.fill();ax.stroke();
+    // hydraulic pistons
+    piston(bx-26,by-10,sx+u1[0]*L1*.42+n1[0]*17,sy+u1[1]*L1*.42+n1[1]*17);
+    piston(sx+u1[0]*L1*.72+n1[0]*15,sy+u1[1]*L1*.72+n1[1]*15,jx+u2[0]*L2*.3+n2[0]*13,jy+u2[1]*L2*.3+n2[1]*13);
+    // links
+    ax.fillStyle='#fff';ax.lineWidth=3;bar(sx,sy,t1,L1,22);bar(jx,jy,t2,L2,16);bar(wx,wy,an,L3,10);
+    // joints
+    gear(sx,sy,17,9,t1*2);gear(jx,jy,13,8,-t2*2+1);
+    ax.fillStyle='#fff';ax.beginPath();ax.arc(wx,wy,7,0,7);ax.fill();ax.stroke();
+    // gripper
+    const o=.12+grip*.5;ax.lineWidth=5;
+    [-1,1].forEach(s=>{const a1=an+s*o,a2=an+s*o*.25,x1=hx+16*Math.cos(a1),y1=hy+16*Math.sin(a1),x2=x1+13*Math.cos(a2),y2=y1+13*Math.sin(a2);
+      ax.strokeStyle=INK;ax.beginPath();ax.moveTo(hx,hy);ax.lineTo(x1,y1);ax.lineTo(x2,y2);ax.stroke();
+      ax.fillStyle=RED;ax.beginPath();ax.arc(x2,y2,3.5,0,7);ax.fill()});
+    // reticle
+    if(inside){ax.strokeStyle=RED;ax.lineWidth=1.5;const q=down?6:11;ax.beginPath();ax.arc(gx,gy,q,0,7);
+      ax.moveTo(gx-q-6,gy);ax.lineTo(gx-q+3,gy);ax.moveTo(gx+q-3,gy);ax.lineTo(gx+q+6,gy);
+      ax.moveTo(gx,gy-q-6);ax.lineTo(gx,gy-q+3);ax.moveTo(gx,gy+q-3);ax.lineTo(gx,gy+q+6);ax.stroke()}}
+  requestAnimationFrame(arm)}
+requestAnimationFrame(arm);
+
+
+// shared helpers for the two new machines: responsive canvas, loop only while visible
+function mk(id,draw){
+  const c=$(id)[0],g=c.getContext('2d');let w=0,h=0,on=false,last=0;
+  const rs=()=>{const d=Math.min(devicePixelRatio||1,2),r=c.getBoundingClientRect();w=r.width;h=r.height;c.width=w*d;c.height=h*d;g.setTransform(d,0,0,d,0,0)};
+  rs();addEventListener('resize',rs);
+  new IntersectionObserver(e=>on=e[0].isIntersecting).observe(c);
+  (function loop(t){if(on){const dt=Math.min((t-last)/1000,.033)||.016;g.clearRect(0,0,w,h);draw(g,w,h,t/1000,dt,c.getBoundingClientRect())}last=t;requestAnimationFrame(loop)})(0);
+  return c}
+const ptr=r=>px===null?null:{x:px-r.left,y:py-r.top,in:px>=r.left&&px<=r.right&&py>=r.top&&py<=r.bottom};
+
+// waveform
+const wf=$('.wf')[0];
+for(let i=0;i<72;i++){const b=document.createElement('i');
+  b.style.cssText=`--h:${22+Math.abs(Math.sin(i*.45)*Math.cos(i*.13))*68+Math.random()*10};--d:${.5+Math.random()*.9}s;--dl:${-Math.random()*1.4}s`;
+  if(i%12===5)b.style.background='var(--red)';wf.appendChild(b)}
+
+// investor: a lever. small capital, big upside. slide the fulcrum to find the balance point
+let ls=.55,lang=0,lav=0,bal=0;
+mk('#lever',(g,w,h,t,dt,r)=>{
+  const p=ptr(r),Lb=Math.min(w*.72,560),Lx=w/2-Lb/2,yF=h*.48,gy=h-36;
+  const st=p&&p.in?Math.max(.1,Math.min(.97,(p.x-Lx)/Lb)):.55+.4*Math.sin(t*.4);
+  ls+=(st-ls)*Math.min(1,dt*7);
+  const tau=6*ls-5,tt=-Math.max(-.22,Math.min(.22,tau*.12));
+  lav+=((tt-lang)*70-lav*7)*dt;lang+=lav*dt;bal+=((Math.abs(tau)<.12?1:0)-bal)*Math.min(1,dt*5);
+  const c=Math.cos(lang),s=Math.sin(lang),F={x:Lx+ls*Lb,y:yF},E={x:F.x-ls*Lb*c,y:F.y-ls*Lb*s};
+  g.lineCap='round';g.lineJoin='round';g.strokeStyle=INK;
+  // level guide + ruler rail
+  g.save();g.setLineDash([4,7]);g.strokeStyle='rgba(0,0,0,.18)';g.lineWidth=1;g.beginPath();g.moveTo(Lx-24,yF);g.lineTo(Lx+Lb+24,yF);g.stroke();g.restore();
+  g.fillStyle='rgba(0,0,0,.18)';g.fillRect(Lx-24,gy+14,Lb+48,1);
+  g.lineWidth=1.5;g.strokeStyle='rgba(0,0,0,.4)';for(let i=0;i<=10;i++){const x=Lx+i*Lb/10;g.beginPath();g.moveTo(x,gy+14);g.lineTo(x,gy+(i%5?20:25));g.stroke()}
+  // fulcrum on its carriage
+  g.strokeStyle=INK;g.lineWidth=3;g.fillStyle='#fff';g.beginPath();g.moveTo(F.x,F.y+8);g.lineTo(F.x-42,gy);g.lineTo(F.x+42,gy);g.closePath();g.fill();g.stroke();
+  g.fillStyle=INK;g.beginPath();g.roundRect(F.x-52,gy,104,10,5);g.fill();
+  g.fillStyle=bal>.5?RED:'#fff';g.lineWidth=2;g.beginPath();g.arc(F.x,gy-18,5,0,7);g.fill();g.stroke();
+  // beam with ruler ticks, pivot pin and the two weights
+  g.save();g.translate(E.x,E.y);g.rotate(lang);
+  g.lineWidth=3;g.fillStyle='#fff';g.beginPath();g.roundRect(-10,-8,Lb+20,16,8);g.fill();g.stroke();
+  g.lineWidth=1.5;for(let i=1;i<10;i++){g.beginPath();g.moveTo(i*Lb/10,-2);g.lineTo(i*Lb/10,i===5?5:3);g.stroke()}
+  const bl=(x,sz,fill,label)=>{g.fillStyle=fill;g.lineWidth=3;g.beginPath();g.roundRect(x-sz/2,-8-sz,sz,sz,6);g.fill();g.stroke();
+    g.fillStyle='#fff';g.font=`800 ${sz*.36}px Outfit,sans-serif`;g.textAlign='center';g.fillText(label,x,-8-sz/2+sz*.13)};
+  bl(.06*Lb,.075*Lb,RED,'1×');bl(.9*Lb,.16*Lb,INK,'5×');
+  g.fillStyle=INK;g.beginPath();g.arc(ls*Lb,0,6,0,7);g.fill();g.fillStyle='#fff';g.beginPath();g.arc(ls*Lb,0,2,0,7);g.fill();g.restore();
+  if(bal>.02){g.globalAlpha=bal;g.fillStyle=RED;g.font='500 15px Outfit,sans-serif';g.textAlign='center';g.fillText('balanced',w/2,26);g.globalAlpha=1}});
+
+// engineer: a self-healing network. the cursor knocks nodes out and traffic routes around them
+const layers=[[.5],[.2,.5,.8],[.12,.37,.63,.88],[.12,.37,.63,.88],[.2,.5,.8],[.5]],lx=[.05,.24,.42,.6,.78,.95],nodes=[];
+layers.forEach((ys,li)=>ys.forEach(y=>nodes.push({nx:lx[li],ny:y,li,out:[],f:0,ft:0,pulse:0})));
+nodes.forEach(a=>nodes.forEach((b,j)=>{if(b.li===a.li+1&&Math.abs(b.ny-a.ny)<=.34)a.out.push(j)}));
+let pk=[],spawn=0,idle=1.5;
+mk('#net',(g,w,h,t,dt,r)=>{
+  const m=36,p=ptr(r),hov=p&&p.in;
+  const P=nodes.map(n=>({x:m+n.nx*(w-2*m),y:m+n.ny*(h-2*m)}));
+  if(!hov){idle-=dt;if(idle<=0){idle=2.4;const mid=nodes.map((n,i)=>i).filter(i=>nodes[i].li>0&&nodes[i].li<5);nodes[mid[Math.random()*mid.length|0]].ft=2}}
+  nodes.forEach((n,i)=>{if(n.li>0&&n.li<5){if(hov&&Math.hypot(P[i].x-p.x,P[i].y-p.y)<36)n.ft=.5;else n.ft=Math.max(0,n.ft-dt)}});
+  const alive=nodes.map(n=>n.ft<=0),reach=[];
+  for(let i=nodes.length-1;i>=0;i--)reach[i]=alive[i]&&(nodes[i].li===5||nodes[i].out.some(j=>reach[j]));
+  nodes.forEach((n,i)=>n.f+=((alive[i]?0:1)-n.f)*Math.min(1,dt*10));
+  // traffic
+  if((spawn-=dt)<=0&&reach[0]&&pk.length<40){spawn=.38;const c=nodes[0].out.filter(j=>reach[j]);pk.push({u:0,v:c[Math.random()*c.length|0],t:0})}
+  for(const k of pk){const a=P[k.u],b=P[k.v];k.t+=240*dt/Math.hypot(b.x-a.x,b.y-a.y);
+    if(!alive[k.v]){k.dead=true;continue}
+    if(k.t>=1){const V=nodes[k.v];V.pulse=1;if(V.li===5){k.dead=true;continue}
+      const c=V.out.filter(j=>reach[j]);if(!c.length){k.dead=true;continue}k.u=k.v;k.v=c[Math.random()*c.length|0];k.t=0}}
+  pk=pk.filter(k=>!k.dead);
+  // draw
+  g.lineCap='round';g.lineJoin='round';
+  nodes.forEach((a,i)=>a.out.forEach(j=>{const f=Math.max(a.f,nodes[j].f);g.strokeStyle=`rgba(0,0,0,${.24*(1-.75*f)})`;g.lineWidth=1.5;
+    g.beginPath();g.moveTo(P[i].x,P[i].y);g.lineTo(P[j].x,P[j].y);g.stroke()}));
+  for(const k of pk){const a=P[k.u],b=P[k.v],x=a.x+(b.x-a.x)*k.t,y=a.y+(b.y-a.y)*k.t,d=Math.hypot(b.x-a.x,b.y-a.y),tl=Math.min(18,k.t*d);
+    g.strokeStyle=RED;g.globalAlpha=.45;g.lineWidth=3;g.beginPath();g.moveTo(x-(b.x-a.x)/d*tl,y-(b.y-a.y)/d*tl);g.lineTo(x,y);g.stroke();
+    g.globalAlpha=1;g.fillStyle=RED;g.beginPath();g.arc(x,y,4.5,0,7);g.fill()}
+  nodes.forEach((n,i)=>{const{x,y}=P[i],src=n.li===0,snk=n.li===5,rad=src||snk?11:9;
+    if(n.pulse>0){g.globalAlpha=n.pulse*.6;g.strokeStyle=RED;g.lineWidth=1.5;g.beginPath();g.arc(x,y,rad+(1-n.pulse)*16,0,7);g.stroke();n.pulse-=dt*2.2}
+    g.globalAlpha=1-.6*n.f;g.lineWidth=3;g.strokeStyle=snk?RED:INK;g.fillStyle=src?INK:'#fff';
+    g.setLineDash(n.f>.5?[3,3]:[]);g.beginPath();g.arc(x,y,rad,0,7);g.fill();g.stroke();g.setLineDash([]);
+    if(n.f>.5){g.globalAlpha=n.f;g.strokeStyle=RED;g.lineWidth=2;g.beginPath();g.moveTo(x-4,y-4);g.lineTo(x+4,y+4);g.moveTo(x+4,y-4);g.lineTo(x-4,y+4);g.stroke()}
+    g.globalAlpha=1});
+  if(hov){g.save();g.setLineDash([4,5]);g.strokeStyle=RED;g.globalAlpha=.5;g.lineWidth=1.5;g.beginPath();g.arc(p.x,p.y,36,0,7);g.stroke();g.restore()}});
+
+// in-page navigation via JS (plain #hash links don't scroll inside sandboxed previews)
+$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  const id=a.getAttribute('href').slice(1),el=id&&document.getElementById(id);
+  if(!el)return;e.preventDefault();
+  el.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'})}));
+</script>
+</body>
+</html>
